@@ -42,8 +42,8 @@
 				<!-- Left Side Of Navbar -->
 				<ul class="nav navbar-nav">
 					&nbsp;					
-					<li><a href="#">Page 1</a></li>
-					<li><a href="#">Page 2</a></li>
+					<li><a href="#">About</a></li>
+					<li><a href="#">Contacts</a></li>
 				</ul>
 
 				<!-- Right Side Of Navbar -->
