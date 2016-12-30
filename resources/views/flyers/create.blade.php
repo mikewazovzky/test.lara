@@ -7,10 +7,16 @@
 	
 	<hr>
 	
-	<form method="POST" action="/flyers" enctype="multipart/form-data">
+	<div class="row">
 	
-		@include('flyers.form')
+		<form method="POST" action="/flyers" enctype="multipart/form-data" class="col-md-6">
 		
-	</form>
+			@include('flyers.form')
+			
+			@include('errors.list')
+			
+		</form>
 
+	</div>
+	
 @stop

@@ -6,7 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Flyer extends Model
 {
-    /**
+    protected $fillable = [
+	    'user_id',   // temporary
+		'street',
+		'city',
+		'zip',
+		'country',
+		'state',
+		'price',
+		'description'	
+	];
+	
+	/**
 	 * A glyer belongs to a user
 	 * 
 	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

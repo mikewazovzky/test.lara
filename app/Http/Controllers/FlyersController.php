@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Flyer;
+use App\Http\Requests\FlyerFormRequest;
 
 class FlyersController extends Controller
 {
@@ -32,9 +33,21 @@ class FlyersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(FlyerFormRequest $request)
     {
-        //
+        // validate the request via Form Request
+		
+		// persist the flyer into database	
+		$input = $request->all();
+		$input['user_id'] = 1; // temporary fake user
+		Flyer::create($input);
+		
+		// flash messaging
+		
+		// redirect		
+		return redirect()->back(); // temporary
+		
+		
     }
 
     /**
