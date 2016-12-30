@@ -86,8 +86,8 @@
 	</div>
 	       
     <!-- Scripts -->
+    <script src="/js/app.js"></script>
     <script src="/js/libs.js"></script>
-     
     @include('flash');    
     
 	@yield('scripts.footer')
