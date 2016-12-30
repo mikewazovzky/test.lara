@@ -7688,4 +7688,8 @@ button.close {
   }
 }
 
+img {
+  max-width: 100%;
+}
+
 /*# sourceMappingURL=app.css.map */
