@@ -24,7 +24,10 @@ class FlyersController extends Controller
      */
     public function create()
     {
-        return view('flyers.create');
+        //flash('Looks Good', 'Hello World!');
+		flash()->success('Looks Good', 'Hello World!');
+		
+		return view('flyers.create');
     }
 
     /**
@@ -43,6 +46,8 @@ class FlyersController extends Controller
 		Flyer::create($input);
 		
 		// flash messaging
+		//flash('Success', 'Your Flyer has been created.');
+		flash()->success('Success', 'Your Flyer has been created.');
 		
 		// redirect		
 		return redirect()->back(); // temporary

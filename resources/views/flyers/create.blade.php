@@ -20,3 +20,9 @@
 	</div>
 	
 @stop
+
+@section('scripts.footer')
+
+	@include('flash');
+	
+@stop

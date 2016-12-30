@@ -11,8 +11,8 @@
     <title>LaraTest</title>
 
     <!-- Styles -->
-    <link href="/css/app.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="/css/app.css">
+	<link rel="stylesheet" href="/css/libs.css">
     <!-- Scripts -->
     <script>
         window.Laravel = <?php echo json_encode([
@@ -83,7 +83,7 @@
 	</div>
 	
     <!-- Scripts -->
-    <script src="/js/app.js"></script>
+    <script src="/js/libs.js"></script>
 	@yield('scripts.footer')
 	
 </body>
