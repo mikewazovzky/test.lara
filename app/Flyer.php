@@ -16,6 +16,21 @@ class Flyer extends Model
 		'price',
 		'description'	
 	];
+    
+    
+    
+    public function scopeLocatedAt($query, $zip, $street)
+    {
+        $street = str_replace('-', ' ', $street);
+        
+        return $query->where(compact('zip', 'street'));
+    }
+    
+    
+    public function getPriceAttribute($price)
+    {
+        return '$' . number_format($price / 100, 2);
+    }
 	
 	/**
 	 * A glyer belongs to a user
