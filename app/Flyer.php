@@ -51,6 +51,19 @@ class Flyer extends Model
 	{
 		return $this->belongsTo('App\User');
 	}
+	
+	/**
+	 * Determine if the given user creted the flyer
+	 * 
+	 * @param  App\User $user
+	 * @return boolean
+	 */		
+	public function ownedBy(User $user)
+	{
+		
+		//dd([$this->user_id, $user->id]);
+		return $this->user_id == $user->id;
+	}
 
     /**
 	 * A flyer is composed of many photos
