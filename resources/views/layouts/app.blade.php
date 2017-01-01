@@ -12,10 +12,9 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="/css/app.css">
-	<link rel="stylesheet" href="/css/libs.css">
+    <link rel="stylesheet" href="/css/libs.css">	
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/dropzone.css">
-  
-    
+	    
     <!-- Scripts -->
     <script>
         window.Laravel = <?php echo json_encode([
@@ -75,6 +74,22 @@
 								</li>
 							</ul>
 						</li>
+						
+						<!------------- TMP ------------->
+
+						<li class="dropdown">
+						  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+						  <ul class="dropdown-menu">
+							<li><a href="#">Action</a></li>
+							<li><a href="#">Another action</a></li>
+							<li><a href="#">Something else here</a></li>
+							<li role="separator" class="divider"></li>
+							<li class="dropdown-header">Nav header</li>
+							<li><a href="#">Separated link</a></li>
+							<li><a href="#">One more separated link</a></li>
+						  </ul>
+						</li>						
+						<!------------------------------->	
 					@endif
 				</ul>
 			</div>
@@ -85,9 +100,11 @@
 		@yield('content')
 	</div>
 	       
-    <!-- Scripts -->
-    <script src="/js/app.js"></script>
+    <!-- Scripts -->	
+	
+
     <script src="/js/libs.js"></script>
+	
     @include('flash');    
     
 	@yield('scripts.footer')

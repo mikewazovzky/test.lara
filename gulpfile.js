@@ -1,7 +1,5 @@
 const elixir = require('laravel-elixir');
 
-require('laravel-elixir-vue-2');
-
 /*
  |--------------------------------------------------------------------------
  | Elixir Asset Management
@@ -14,12 +12,15 @@ require('laravel-elixir-vue-2');
  */
 
 elixir((mix) => {
-    mix.sass('app.scss')
+	mix.sass('app.scss')
 	   .scripts([
-			'libs/sweetalert-dev.js'
-	   ], './public/js/libs.js')
-	   .styles([
-			'libs/sweetalert.css'
-	   ], './public/css/libs.css')
-       .webpack('app.js');
+			'libs/jquery-3.1.1.min.js',
+			'libs/bootstrap.min.js',			
+			'libs/sweetalert-dev.js',
+			'libs/lity.js'
+		], './public/js/libs.js')
+	    .styles([
+			'libs/sweetalert.css',
+			'libs/lity.css'
+	    ], './public/css/libs.css');
 });
