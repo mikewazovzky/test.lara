@@ -33,17 +33,18 @@
             @if(Auth::user() && Auth::user()->owns($flyer))
             
                 <hr>
-                   
-                <form id="addPhotosForm" 
-                      action="{{ route('store_photo_path', [$flyer->zip, $flyer->street]) }}" 
-                      method="POST"
-                      class="dropzone"
-                >
                 
-                    {{ csrf_field() }}
-                
-                </form>       
-
+                <div id="dropzone">                   
+                    <form id="addPhotosForm" 
+                          action="{{ route('store_photo_path', [$flyer->zip, $flyer->street]) }}" 
+                          method="POST"
+                          class="dropzone"
+                    >
+                    
+                        {{ csrf_field() }}
+                    
+                    </form>                      
+                </div>
             @endif
             
         </div>

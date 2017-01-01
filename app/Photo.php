@@ -14,12 +14,23 @@ class Photo extends Model
     
     protected $baseDir = 'images/photos';
 	
-    
+    /**
+     * Static function creates new App\Photo object and fills its data
+     *
+     * @param string $name
+     * @return App\Photo
+     */
     public static function named($name)
     {
         return (new static)->fillData($name);        
-    }
-	
+    }	
+    
+    /**
+     * Fill photo data
+     *
+     * @param string $name
+     * @return App\Photo
+     */
 	public function fillData($name)
 	{
 		$this->name = sprintf("%s-%s", time(), $name);
@@ -31,6 +42,12 @@ class Photo extends Model
 		return $this;		
 	}
 	
+    /**
+     * Upload image file
+     *
+     * @param Illuminate\Http\UploadedFile $file
+     * @return App\Photo
+     */
 	public function upload(UploadedFile $file)
 	{
 		$file->move($this->baseDir, $this->name);
@@ -40,6 +57,11 @@ class Photo extends Model
 		return $this;
 	}
 	
+    /**
+     * Make and save thumbnail file
+     *
+     * @return ???
+     */
 	public function makeThumbnail()
 	{
 		Image::make($this->path)

@@ -12,11 +12,14 @@ use App\Http\Requests\ChangeFlyerRequest;
 
 class FlyersController extends Controller
 {
-	public function __construct()
+	
+    /**
+     * User usthentiaction 
+     */
+    public function __construct()
     {
 		$this->middleware('auth', ['except' => ['show']] );
-    }
-    
+    }    
     
     /**
      * Display a listing of the resource.
@@ -29,7 +32,7 @@ class FlyersController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the form for creating a new Flyer.
      *
      * @return \Illuminate\Http\Response
      */
@@ -39,33 +42,29 @@ class FlyersController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created flyer in database.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\FlyerFormRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(FlyerFormRequest $request)
     {
-        // validate the request via Form Request
+        // request validation via Form Request
 		
-		// persist the flyer into database	
 		$flyer = \Auth::user()->publish(
             new Flyer($request->all())
         );
         
-		// flash messaging
 		flash()->success('Success', 'Your Flyer has been created.');
-		
-		// redirect	to /flyer->zip/$flyer->address	
-		return redirect(flyer_path($flyer));
-		
-		
+
+		return redirect(flyer_path($flyer));		
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified flyer.
      *
-     * @param  int  $id
+     * @param  string  $zip
+     * @param  string  $street 
      * @return \Illuminate\Http\Response
      */
     public function show($zip, $street)
@@ -75,6 +74,14 @@ class FlyersController extends Controller
         return view('flyers.show', compact('flyer'));
     }    
     
+    /**
+     * Add photo to a flyer
+     *
+     * @param  string  $zip
+     * @param  string  $street 
+     * @param  App\Http\Requests\FlyerFormRequest  $request     
+     * @return void
+     */
     public function addPhoto($zip, $street, ChangeFlyerRequest $request)
     {
         $photo = $this->makePhoto($request->file('photo'));

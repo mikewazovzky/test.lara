@@ -8,7 +8,6 @@ use App\Photo;
 class Flyer extends Model
 {
     protected $fillable = [
-	    'user_id',   // temporary
 		'street',
 		'city',
 		'zip',
@@ -16,14 +15,9 @@ class Flyer extends Model
 		'state',
 		'price',
 		'description'	
-	];
+	];    
     
     
-	/**
-	 * Find the flyer at a given address
-	 * 
-	 * @return App\Flyer
-	 */	    
     public static function locatedAt($zip, $street)
     {
         $street = str_replace('-', ' ', $street);
@@ -31,12 +25,23 @@ class Flyer extends Model
         return static::where(compact('zip', 'street'))->firstOrFail();
     }
     
-    
+	/**
+	 * Format and return price attribute
+	 * 
+     * @param integer $price
+	 * @return string
+	 */	    
     public function getPriceAttribute($price)
     {
         return '$' . number_format($price / 100, 2);
     }
     
+	/**
+	 * Add photo to a flyer
+	 * 
+     * @param App\Photo $photo
+	 * @return App\Photo
+	 */	    
     public function addPhoto(Photo $photo)
     {
         return $this->photos()->save($photo);
@@ -60,9 +65,7 @@ class Flyer extends Model
 	 */		
 	public function ownedBy(User $user)
 	{
-		
-		//dd([$this->user_id, $user->id]);
-		return $this->user_id == $user->id;
+        return $this->user_id == $user->id;
 	}
 
     /**
