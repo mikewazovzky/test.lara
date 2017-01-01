@@ -20,5 +20,6 @@ elixir((mix) => {
 	   ], './public/js/libs.js')
 	   .styles([
 			'libs/sweetalert.css'
-	   ], './public/css/libs.css');
+	   ], './public/css/libs.css')
+       .webpack('app.js');
 });

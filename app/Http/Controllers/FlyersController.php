@@ -49,16 +49,15 @@ class FlyersController extends Controller
         // validate the request via Form Request
 		
 		// persist the flyer into database	
-		$input = $request->all();
-		$input['user_id'] = 1; // temporary fake user
-		Flyer::create($input);
-		
+		$flyer = \Auth::user()->publish(
+            new Flyer($request->all())
+        );
+        
 		// flash messaging
-		//flash('Success', 'Your Flyer has been created.');
 		flash()->success('Success', 'Your Flyer has been created.');
 		
-		// redirect		
-		return redirect()->back(); // temporary
+		// redirect	to /flyer->zip/$flyer->address	
+		return redirect(flyer_path($flyer));
 		
 		
     }

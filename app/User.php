@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Flyer;
 
 class User extends Authenticatable
 {
@@ -36,4 +37,14 @@ class User extends Authenticatable
 	{
 		return $this->hasMany('App\Flyer');
 	}
+    
+    public function publish(Flyer $flyer)
+    {
+        return $this->flyers()->save($flyer);
+    }
+    
+    public function owns($relation)
+    {
+        return $relation->user_id == $this->id;
+    }
 }

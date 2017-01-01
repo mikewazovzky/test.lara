@@ -1,5 +1,7 @@
 <?php
 
+use App\Flyer;
+
 function flash($title = null, $message = null)
 {
 	
@@ -10,4 +12,9 @@ function flash($title = null, $message = null)
 	}
 	
 	return $flash->info($title, $message);
+}
+
+function flyer_path(Flyer $flyer)
+{
+    return $flyer->zip . '/' . str_replace(' ', '-', $flyer->street);
 }
