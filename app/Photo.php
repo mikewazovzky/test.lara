@@ -15,10 +15,12 @@ class Photo extends Model
 	protected $file;
 	
     /**
-     * Boot method is called before creating a new model
-	 * Uploads file
+     * Upload file
+	 * Boot method is called before creating a new model	 
+	 * If closure return true - proceeds to create a new model  
+	 * if false - cancels creation of the model
 	 *
-     * @return true if success - proceeds to create a new model object), false otherwise - cancel creation of the model
+     * @return void
      */	
 	protected static function boot()
 	{
@@ -124,6 +126,16 @@ class Photo extends Model
 		Image::make($this->path)
 			->fit(200)
 			->save($this->thumbnail_path);
+	}
+	
+	public function delete()
+	{
+		\File::delete([
+			$this->path,
+			$this->thumbnail_path
+		]);
+		
+		parent::delete();
 	}
     
 
