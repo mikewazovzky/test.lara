@@ -28,7 +28,80 @@ class Photo extends Model
 	}
 	
     /**
-     * Upload image file
+	 * A photo belongs to a Flyer
+	 * 
+	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+	 */	
+	public function flyer()
+	{
+		return $this->belongsTo('App\Flyer');
+	}	
+	
+	/**
+	 * Static constructor. Create photo object from uploaded file
+	 * 
+	 * @param Illuminate\Http\UploadedFile $file
+	 * @return App\Photo self
+	 */	
+	public static function fromFile(UploadedFile $file) 
+	{
+		$photo = new static;
+		
+		$photo->file = $file;
+		
+		return $photo->fill([
+			'name' => $photo->fileName(),
+			'path' => $photo->filePath(),
+			'thumbnail_path' => $photo->thumbnailPath()
+		]);
+	}
+	
+	/**
+	 * Create photo file name
+	 * 
+	 * @return string 
+	 */	
+	protected function fileName()
+	{
+		$name = time() . $this->file->getClientOriginalName();
+		
+		$extention = $this->file->getClientOriginalExtension();
+		
+		return "{$name}.{$extention}";
+	}
+
+	/**
+	 * Create photo file path
+	 * 
+	 * @return string 
+	 */	
+	protected function filePath()
+	{
+		return $this->baseDir() . '/' . $this->fileName();
+	}
+	
+	/**
+	 * Create photo thumbnail path
+	 * 
+	 * @return string 
+	 */	
+	protected function thumbnailPath()
+	{
+		return $this->baseDir() . '/tn-' . $this->fileName();
+	}
+	
+	/**
+	 * Return images directory path
+	 * 
+	 * @return string 
+	 */		
+	protected function baseDir()
+	{
+		return 'images/photos';
+	}	
+    
+	/**
+     * Move photo to a folder
 	 *
      * @return App\Photo self
      */
@@ -42,9 +115,9 @@ class Photo extends Model
 	}
 	
     /**
-     * Make and save thumbnail file
+     * Create and save thumbnail for the photo
      *
-     * @return ???
+     * @return void
      */
 	public function makeThumbnail()
 	{
@@ -53,50 +126,7 @@ class Photo extends Model
 			->save($this->thumbnail_path);
 	}
     
-    /**
-	 * A photo belongs to a Flyer
-	 * 
-	 * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-	 */	
-	public function flyer()
-	{
-		return $this->belongsTo('App\Flyer');
-	}
+
 	
-	public static function fromFile(UploadedFile $file) 
-	{
-		$photo = new static;
-		
-		$photo->file = $file;
-		
-		return $photo->fill([
-			'name' => $photo->fileName(),
-			'path' => $photo->filePath(),
-			'thumbnail_path' => $photo->thumbnailPath()
-		]);
-	}
-		
-	protected function fileName()
-	{
-		$name = time() . $this->file->getClientOriginalName();
-		
-		$extention = $this->file->getClientOriginalExtension();
-		
-		return "{$name}.{$extention}";
-	}
-	
-	protected function filePath()
-	{
-		return $this->baseDir() . '/' . $this->fileName();
-	}
-	
-	protected function thumbnailPath()
-	{
-		return $this->baseDir() . '/tn-' . $this->fileName();
-	}
-	
-	protected function baseDir()
-	{
-		return 'images/photos';
-	}	
+
 }
