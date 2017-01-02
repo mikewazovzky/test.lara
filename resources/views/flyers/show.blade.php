@@ -29,8 +29,8 @@
 					@endforeach
 				</div>	
 			@endforeach
-            
-            @if(Auth::user() && Auth::user()->owns($flyer))
+            			
+            @if($user && $user->owns($flyer))				
             
                 <hr>
                 
