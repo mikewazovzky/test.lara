@@ -15,6 +15,19 @@ class Photo extends Model
 	protected $file;
 	
     /**
+     * Boot method is called before creating a new model
+	 * Uploads file
+	 *
+     * @return true if success - proceeds to create a new model object), false otherwise - cancel creation of the model
+     */	
+	protected static function boot()
+	{
+		static::creating(function($photo) {
+			return $photo->upload();     
+		});
+	}
+	
+    /**
      * Upload image file
 	 *
      * @return App\Photo self
