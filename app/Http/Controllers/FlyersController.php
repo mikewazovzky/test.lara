@@ -84,16 +84,12 @@ class FlyersController extends Controller
      */
     public function addPhoto($zip, $street, ChangeFlyerRequest $request)
     {
-        $photo = $this->makePhoto($request->file('photo'));
+        $photo = Photo::fromFile($request->file('photo'))->upload();
         
         Flyer::locatedAt($zip, $street)->addPhoto($photo);
     }
 	
-	public function makePhoto(UploadedFile $file)
-	{
-		return Photo::named($file->getClientOriginalName())
-			->upload($file);
-	}
+
 
     /**
      * Show the form for editing the specified resource.

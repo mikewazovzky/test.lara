@@ -11,46 +11,17 @@ class Photo extends Model
 	protected $table = 'flyer_photos';
 	
 	protected $fillable = ['name', 'path', 'thumbnail_path'];
-    
-    protected $baseDir = 'images/photos';
 	
-    /**
-     * Static function creates new App\Photo object and fills its data
-     *
-     * @param string $name
-     * @return App\Photo
-     */
-    public static function named($name)
-    {
-        return (new static)->fillData($name);        
-    }	
-    
-    /**
-     * Fill photo data
-     *
-     * @param string $name
-     * @return App\Photo
-     */
-	public function fillData($name)
-	{
-		$this->name = sprintf("%s-%s", time(), $name);
-		
-		$this->path = sprintf("%s/%s", $this->baseDir, $this->name);
-		
-		$this->thumbnail_path = sprintf("%s/tn-%s", $this->baseDir, $this->name);
-		
-		return $this;		
-	}
+	protected $file;
 	
     /**
      * Upload image file
-     *
-     * @param Illuminate\Http\UploadedFile $file
-     * @return App\Photo
+	 *
+     * @return App\Photo self
      */
-	public function upload(UploadedFile $file)
+	public function upload()
 	{
-		$file->move($this->baseDir, $this->name);
+		$this->file->move($this->baseDir(), $this->path);
 		
 		$this->makeThumbnail();
 			
@@ -78,4 +49,41 @@ class Photo extends Model
 	{
 		return $this->belongsTo('App\Flyer');
 	}
+	
+	public static function fromFile(UploadedFile $file) 
+	{
+		$photo = new static;
+		
+		$photo->file = $file;
+		
+		return $photo->fill([
+			'name' => $photo->fileName(),
+			'path' => $photo->filePath(),
+			'thumbnail_path' => $photo->thumbnailPath()
+		]);
+	}
+		
+	protected function fileName()
+	{
+		$name = time() . $this->file->getClientOriginalName();
+		
+		$extention = $this->file->getClientOriginalExtension();
+		
+		return "{$name}.{$extention}";
+	}
+	
+	protected function filePath()
+	{
+		return $this->baseDir() . '/' . $this->fileName();
+	}
+	
+	protected function thumbnailPath()
+	{
+		return $this->baseDir() . '/tn-' . $this->fileName();
+	}
+	
+	protected function baseDir()
+	{
+		return 'images/photos';
+	}	
 }
