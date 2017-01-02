@@ -7692,6 +7692,31 @@ button.close {
   border: dotted 3px blue;
 }
 
+.relative {
+  position: relative;
+  border: 1PX SOLID #000;
+}
+
+.absolute {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 2em;
+  line-height: 0.5em;
+}
+
+.deleteButton {
+  color: red;
+  background-color: transparent;
+  border: none;
+  opacity: 0.6;
+  padding: 0 1px;
+}
+
+.deleteButton:hover {
+  opacity: 1;
+}
+
 img {
   max-width: 100%;
 }
