@@ -29,7 +29,7 @@
 									
 									<input type="hidden" name="_method" value="DELETE" >
 									
-									<button class="deleteButton" type="submit">&times;</button>
+									<button class="deleteButton" type="submit"><img class="deleteButtonImage" src="/images/delete.png"/></button>
 									
 								</form>
 							
