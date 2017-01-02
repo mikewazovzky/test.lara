@@ -6,6 +6,9 @@ use App\Flyer;
 use App\Photo;
 use App\Http\Requests\AddPhotoRequest;
 
+use Illuminate\Support\Facades\Auth;
+
+
 class PhotosController extends Controller
 {
     /**
@@ -25,7 +28,14 @@ class PhotosController extends Controller
 	
 	public function destroy(Photo $photo)
     {
-		//Photo::findOrFail($id)->delete();
+		//dd([$photo->flyer->user_id, Auth::user()->id]);
+		
+		if(!Auth::user() || $photo->flyer->user != Auth::user()) {
+			
+			flash()->error('Unauthorized!', 'You have no permission for this operation.');
+			
+			return back();
+		}
 		
 		$photo->delete();
 		
