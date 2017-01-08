@@ -20,22 +20,16 @@
 				&nbsp;					
 				<li><a href="#">About</a></li>
 				<li><a href="#">Contacts</a></li>
-				
-				<!------------- TMP ------------->
 				<li class="dropdown">
-				  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-				  <ul class="dropdown-menu">
-					<li><a href="#">Action</a></li>
-					<li><a href="#">Another action</a></li>
-					<li><a href="#">Something else here</a></li>
-					<li role="separator" class="divider"></li>
-					<li class="dropdown-header">Nav header</li>
-					<li><a href="#">Separated link</a></li>
-					<li><a href="#">One more separated link</a></li>
-				  </ul>
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Flyers <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#">Index</a></li>
+						<li><a href="#">Create</a></li>
+						<li role="separator" class="divider"></li>
+						<li class="dropdown-header">About</li>
+						<li><a href="#">About Project Flyers </a></li>
+					</ul>
 				</li>						
-				<!------------------------------->						
-
 			</ul>
 
 			<!-- Right Side Of Navbar -->
