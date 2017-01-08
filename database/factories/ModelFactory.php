@@ -36,3 +36,12 @@ $factory->define(App\Flyer::class, function (Faker\Generator $faker) {
         'description'   => $faker->paragraphs(3, true)
     ];
 });
+
+$factory->define(App\Task::class, function (Faker\Generator $faker) {
+
+    return [
+		'title'			=> $faker->sentence(3),
+        'description'   => $faker->sentence(7),
+        'done'          => false
+    ];
+});
