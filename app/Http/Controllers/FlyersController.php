@@ -14,7 +14,7 @@ class FlyersController extends Controller
      */
     public function __construct()
     {
-		$this->middleware('auth', ['except' => ['show']] );
+		$this->middleware('auth', ['except' => ['index', 'show']] );
     }    
     
     /**
@@ -24,7 +24,9 @@ class FlyersController extends Controller
      */
     public function index()
     {
-        //
+        $flyers = Flyer::paginate(7);
+		
+		return view('flyers.index', ['flyers' => $flyers]);
     }
 
     /**
