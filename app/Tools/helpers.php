@@ -1,18 +1,19 @@
 <?php
 
 use App\Flyer;
-use App\Http\Utilities\Country;
+use App\Tools\Country;
+use App\Tools\Url;
 
 /**
  * Flash message to the session
  * 
  * @param string|null $title
  * @param string|null $message 
- * @return App\Http\Flash 
+ * @return App\Tools\Flash 
  */
 function flash($title = null, $message = null)
 {	
-	$flash = app('App\Http\Flash');
+	$flash = app('App\Tools\Flash');
 	
 	if( func_num_args() == 0) {		
 		return $flash;
@@ -35,4 +36,9 @@ function flyer_path(Flyer $flyer)
 function country($code)
 {
 	return Country::name($code);
+}
+
+function filtered_url(array $exceptions, array $with)
+{
+	return (new Url)->except($exceptions)->with($with)->get();
 }

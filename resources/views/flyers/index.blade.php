@@ -10,11 +10,11 @@
 			<h3>
 				{{ $flyer->city }} 
 				<strong><a href="
-					{{ (new App\Url)->except(['page'])->with(['country' => $flyer->country])->get() }}
+					{{ filtered_url(['page'], ['country' => $flyer->country]) }}
 				">[{{ country($flyer->country) }}]</a></strong>
 				<a href="{{ flyer_path($flyer)}}">{{ $flyer->street }}</a> 
 				<span class="created-by">created by <a href="
-					{{ (new App\Url)->except(['page'])->with(['name' => $flyer->user->name ])->get() }}
+					{{ filtered_url(['page'], ['name' => $flyer->user->name ]) }}
 				">{{ $flyer->user->name }}</a><span>
 			</h3>
 			

@@ -1,4 +1,4 @@
-@inject('countries', 'App\Http\Utilities\Country')
+@inject('countries', 'App\Tools\Country')
 
 {{ csrf_field() }}
 
