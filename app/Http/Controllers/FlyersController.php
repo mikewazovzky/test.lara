@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Flyer;
 use App\Photo;
+use App\User;
 use App\Http\Requests\FlyerFormRequest;
 
 class FlyersController extends Controller
@@ -22,11 +24,22 @@ class FlyersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $flyers = Flyer::paginate(7);
+        $flyers = (new Flyer)->newQuery();
 		
-		return view('flyers.index', ['flyers' => $flyers]);
+		if($request->has('country')) {
+			$flyers->where('country', $request->country);
+		}
+		
+		if($request->has('name')) {
+			$user = User::where('name', '=', $request->name)->first();
+			$flyers->where('user_id', $user->id);
+		}	
+		
+		$flyers->orderBy('country');
+		
+		return view('flyers.index', ['flyers' => $flyers->paginate(7)]);
     }
 
     /**

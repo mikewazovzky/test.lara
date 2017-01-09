@@ -9,9 +9,9 @@
 		<section>
 			<h3>
 				{{ $flyer->city }} 
-				<strong><a href="">[{{ $flyer->country }}]</a></strong>
+				<strong><a href="{{ url()->current() . '?country=' . $flyer->country }}">[{{ $flyer->country }}]</a></strong>
 				<a href="{{ flyer_path($flyer)}}">{{ $flyer->street }}</a> 
-				<span class="created-by">created by <a href="">{{ $flyer->user->name }}</a><span>
+				<span class="created-by">created by <a href="{{ url()->current() . '?name=' . $flyer->user->name }}">{{ $flyer->user->name }}</a><span>
 			</h3>
 			
 			<p>{{ substr($flyer->description, 0, 250) . '...' }}</p>
@@ -20,7 +20,7 @@
 	@endforeach
 	
 	<div class="div-center">
-		{{ $flyers->links() }}
+		{{ $flyers->appends(Request::except('page'))->links() }}
 	</div>
 	
 @stop

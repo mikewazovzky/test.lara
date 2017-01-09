@@ -1,114 +1,133 @@
-$(document).ready(function(){
+/******* Application Initiation: setting all handlers *******/
+function setEventHandlers() {	
+
+	Ajax.setEventHandlers();
+	
+}
+
+$("document").ready(function() {	
+	setEventHandlers();
+});
+/********************** Module Ajax: Tasks Index Page ********************/
+
+var Ajax = (function() {
 
     var url = "/tasks";
-
-    //display modal form for task editing
-    $('.open-modal').click(function(){
-        var task_id = $(this).val();
-
-        $.get(url + '/' + task_id, function (data) {
-            //success data
-            console.log(data);
-            $('#task_id').val(data.id);
-            $('#task').val(data.title);
-            $('#description').val(data.description);
-            $('#btn-save').val("update");
-
-            $('#myModal').modal('show');
-        }) 
-    });
-
-    //display modal form for creating new task
-    $('#btn-add').click(function(){
-        $('#btn-save').val("add");
-        $('#frmTasks').trigger("reset");
-        $('#myModal').modal('show');
-    });
-
-    //delete task and remove it from list
-    $('.delete-task').click(function(){
-        var task_id = $(this).val();
+	
+	return {
 		
-		$.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-            }
-        })
-		
+		// Set Ajax Module event handlers
+		setEventHandlers: function () {	
 
-        $.ajax({
+			//display modal form for task editing
+			$('.open-modal').click(function(){
+				var task_id = $(this).val();
 
-            type: "DELETE",
-            url: url + '/' + task_id,
-            success: function (data) {
-                console.log(data);
+				$.get(url + '/' + task_id, function (data) {
+					//success data
+					console.log(data);
+					$('#task_id').val(data.id);
+					$('#task').val(data.title);
+					$('#description').val(data.description);
+					$('#btn-save').val("update");
 
-                $("#task" + task_id).remove();
-            },
-            error: function (data) {
-                console.log('Error:', data);
-            }
-        });
-    });
+					$('#myModal').modal('show');
+				}) 
+			});
 
-    //create new task / update existing task
-    $("#btn-save").click(function (e) {
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-            }
-        })
+			//display modal form for creating new task
+			$('#btn-add').click(function(){
+				$('#btn-save').val("add");
+				$('#frmTasks').trigger("reset");
+				$('#myModal').modal('show');
+			});
 
-        e.preventDefault(); 
+			//delete task and remove it from list
+			$('.delete-task').click(function(){
+				var task_id = $(this).val();
+				
+				$.ajaxSetup({
+					headers: {
+						'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+					}
+				})
+				
 
-        var formData = {
-            title: $('#task').val(),
-            description: $('#description').val(),
-        }
+				$.ajax({
 
-        //used to determine the http verb to use [add=POST], [update=PUT]
-        var state = $('#btn-save').val();
+					type: "DELETE",
+					url: url + '/' + task_id,
+					success: function (data) {
+						console.log(data);
 
-        var type = "POST"; //for creating new resource
-        var task_id = $('#task_id').val();;
-        var my_url = url;
+						$("#task" + task_id).remove();
+					},
+					error: function (data) {
+						console.log('Error:', data);
+					}
+				});
+			});
 
-        if (state == "update"){
-            type = "PUT"; //for updating existing resource
-            my_url += '/' + task_id;
-        }
+			//create new task / update existing task
+			$("#btn-save").click(function (e) {
+				$.ajaxSetup({
+					headers: {
+						'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+					}
+				})
 
-        console.log(formData);
+				e.preventDefault(); 
 
-        $.ajax({
+				var formData = {
+					title: $('#task').val(),
+					description: $('#description').val(),
+				}
 
-            type: type,
-            url: my_url,
-            data: formData,
-            dataType: 'json',
-            success: function (data) {
-                console.log(data);
+				//used to determine the http verb to use [add=POST], [update=PUT]
+				var state = $('#btn-save').val();
 
-                var task = '<tr id="task' + data.id + '"><td>' + data.id + '</td><td>' + data.title + '</td><td>' + data.description + '</td><td>' + data.created_at + '</td>';
-                
-				task += '<td><button class="btn btn-warning btn-xs btn-detail open-modal" value="' + data.id + '">Edit</button></td>';
-                task += '<td><button class="btn btn-danger btn-xs btn-delete delete-task" value="' + data.id + '">Delete</button></td></tr>';
+				var type = "POST"; //for creating new resource
+				var task_id = $('#task_id').val();;
+				var my_url = url;
 
-                if (state == "add"){ //if user added a new record
-                    $('#tasks-list').append(task);
-                }else{ //if user updated an existing record
+				if (state == "update"){
+					type = "PUT"; //for updating existing resource
+					my_url += '/' + task_id;
+				}
 
-                    $("#task" + task_id).replaceWith( task );
-                }
+				console.log(formData);
 
-                $('#frmTasks').trigger("reset");
+				$.ajax({
 
-                $('#myModal').modal('hide')
-            },
-            error: function (data) {
-                console.log('Error:', data);
-            }
-        });
-    });
-});
+					type: type,
+					url: my_url,
+					data: formData,
+					dataType: 'json',
+					success: function (data) {
+						console.log(data);
+
+						var task = '<tr id="task' + data.id + '"><td>' + data.id + '</td><td>' + data.title + '</td><td>' + data.description + '</td><td>' + data.created_at + '</td>';
+						
+						task += '<td><button class="btn btn-warning btn-xs btn-detail open-modal" value="' + data.id + '">Edit</button></td>';
+						task += '<td><button class="btn btn-danger btn-xs btn-delete delete-task" value="' + data.id + '">Delete</button></td></tr>';
+
+						if (state == "add"){ //if user added a new record
+							$('#tasks-list').append(task);
+						}else{ //if user updated an existing record
+
+							$("#task" + task_id).replaceWith( task );
+						}
+
+						$('#frmTasks').trigger("reset");
+
+						$('#myModal').modal('hide')
+					},
+					error: function (data) {
+						console.log('Error:', data);
+					}
+				});
+			});
+		}
+	}
+}());
 //# sourceMappingURL=ajax.js.map

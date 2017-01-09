@@ -58,7 +58,7 @@
 						</div>
 
 						<div class="form-group">
-							<label for="inputEmail3" class="col-sm-3 control-label">Description</label>
+							<label for="description" class="col-sm-3 control-label">Description</label>
 							<div class="col-sm-9">
 								<input type="text" class="form-control" id="description" name="description" placeholder="Description" value="">
 							</div>

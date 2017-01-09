@@ -17,6 +17,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/test', function () {
+    return view('test');
+});
+
 Route::resource('tasks', 'TasksController');
 
 Route::resource('flyers', 'FlyersController');
