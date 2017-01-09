@@ -9,9 +9,13 @@
 		<section>
 			<h3>
 				{{ $flyer->city }} 
-				<strong><a href="{{ url()->current() . '?country=' . $flyer->country }}">[{{ $flyer->country }}]</a></strong>
+				<strong><a href="
+					{{ (new App\Url)->except(['page'])->with(['country' => $flyer->country])->get() }}
+				">[{{ $flyer->country }}]</a></strong>
 				<a href="{{ flyer_path($flyer)}}">{{ $flyer->street }}</a> 
-				<span class="created-by">created by <a href="{{ url()->current() . '?name=' . $flyer->user->name }}">{{ $flyer->user->name }}</a><span>
+				<span class="created-by">created by <a href="
+					{{ (new App\Url)->except(['page'])->with(['name' => $flyer->user->name ])->get() }}
+				">{{ $flyer->user->name }}</a><span>
 			</h3>
 			
 			<p>{{ substr($flyer->description, 0, 250) . '...' }}</p>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Flyer;
 use App\Photo;
 use App\User;
+
 use App\Http\Requests\FlyerFormRequest;
 
 class FlyersController extends Controller
