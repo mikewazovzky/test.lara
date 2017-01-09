@@ -11,7 +11,7 @@
 				{{ $flyer->city }} 
 				<strong><a href="
 					{{ (new App\Url)->except(['page'])->with(['country' => $flyer->country])->get() }}
-				">[{{ $flyer->country }}]</a></strong>
+				">[{{ country($flyer->country) }}]</a></strong>
 				<a href="{{ flyer_path($flyer)}}">{{ $flyer->street }}</a> 
 				<span class="created-by">created by <a href="
 					{{ (new App\Url)->except(['page'])->with(['name' => $flyer->user->name ])->get() }}

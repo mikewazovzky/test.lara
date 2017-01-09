@@ -250,4 +250,22 @@ class Country
         // return array_keys(static::$countries);
         return static::$countries;
     }
+	
+	public static function code($country) 
+	{
+		if(array_key_exists($country, static::$countries)) {			
+			return static::$countries[$country];
+		} else {
+			return "us";
+		}
+	}
+	
+	public static function name($code)
+	{
+		if(in_array($code, static::$countries)) {	
+			return array_search($code, static::$countries);
+		} else {
+			return "United States";
+		}
+	}
 }

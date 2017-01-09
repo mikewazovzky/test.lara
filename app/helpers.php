@@ -1,6 +1,7 @@
 <?php
 
 use App\Flyer;
+use App\Http\Utilities\Country;
 
 /**
  * Flash message to the session
@@ -29,4 +30,9 @@ function flash($title = null, $message = null)
 function flyer_path(Flyer $flyer)
 {
     return $flyer->zip . '/' . str_replace(' ', '-', $flyer->street);
+}
+
+function country($code)
+{
+	return Country::name($code);
 }

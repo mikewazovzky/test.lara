@@ -12,6 +12,9 @@
 */
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
+
+use App\Http\Utilities\Country;
+
 $factory->define(App\User::class, function (Faker\Generator $faker) {
     static $password;
 
@@ -31,7 +34,7 @@ $factory->define(App\Flyer::class, function (Faker\Generator $faker) {
         'city'          => $faker->city,   
         'zip'           => $faker->postcode,  
         'state'         => $faker->state, 
-        'country'       => $faker->country,         
+        'country'       => Country::code($faker->country),         
         'price'         => $faker->numberBetween(10000, 5000000),           
         'description'   => $faker->paragraphs(3, true)
     ];

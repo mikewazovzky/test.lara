@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Url;
+use App\Http\Utilities\Country;
 
 class TestController extends Controller
 {
-    public function test(Request $request)
+    public function test()
 	{		
-		$url = (new Url)->except(['page'])->with(['city' => 'Moscow'])->get();
+		$code = Country::code('Bahamas');
 		
-		return view('test', compact('request', 'url'));
+		$code = 'ru';
+		
+		$country = Country::name($code);
+		
+		return view('test', compact('request', 'code', 'country'));
 	}
 }
