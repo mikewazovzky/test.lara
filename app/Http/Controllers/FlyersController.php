@@ -19,7 +19,7 @@ class FlyersController extends Controller
     {
 		$this->middleware('auth', ['except' => ['index', 'show']] );
     }    
-    
+	
     /**
      * Display a listing of the resource.
      *
@@ -27,7 +27,7 @@ class FlyersController extends Controller
      */
     public function index(Request $request)
     {
-        $flyers = (new Flyer)->newQuery();
+        $flyers = Flyer::query();
 		
 		if($request->has('country')) {
 			$flyers->where('country', $request->country);
@@ -39,7 +39,7 @@ class FlyersController extends Controller
 		}	
 		
 		$flyers->orderBy('country');
-		
+			
 		return view('flyers.index', ['flyers' => $flyers->paginate(7)]);
     }
 
@@ -118,5 +118,10 @@ class FlyersController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function filters(Request $request)
+    {
+        dd($request->fullUrl());
     }
 }

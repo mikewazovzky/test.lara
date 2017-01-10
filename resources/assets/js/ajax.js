@@ -100,8 +100,8 @@ var Ajax = (function() {
 
 						var task = '<tr id="task' + data.id + '"><td>' + data.id + '</td><td>' + data.title + '</td><td>' + data.description + '</td><td>' + data.created_at + '</td>';
 						
-						task += '<td><button class="btn btn-warning btn-xs btn-detail open-modal" value="' + data.id + '">Edit</button></td>';
-						task += '<td><button class="btn btn-danger btn-xs btn-delete delete-task" value="' + data.id + '">Delete</button></td></tr>';
+						task += '<td><button class="btn btn-warning btn-xs open-modal" value="' + data.id + '">Edit</button></td>';
+						task += '<td><button class="btn btn-danger btn-xs delete-task" value="' + data.id + '">Delete</button></td></tr>';
 
 						if (state == "add"){ //if user added a new record
 							$('#tasks-list').append(task);

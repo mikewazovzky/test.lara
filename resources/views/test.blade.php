@@ -6,3 +6,7 @@
 	<p>{{ $country }}</p>
 
 @stop
+
+@section('footer.scripts')
+	<script src="/js/test.js" ></script>
+@stop

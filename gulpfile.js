@@ -13,18 +13,24 @@ const elixir = require('laravel-elixir');
 
 elixir((mix) => {
 	mix.sass('app.scss')
+	
+	    .styles([
+			'libs/sweetalert.css',
+			'libs/lity.css'
+	    ], './public/css/libs.css')	
+	
 		.scripts([
 			'script.js', 
 			'ajax.js'
 		], 'public/js/ajax.js')
+		
 	    .scripts([
 			'libs/jquery-3.1.1.min.js',
 			'libs/bootstrap.min.js',			
 			'libs/sweetalert-dev.js',
 			'libs/lity.js'
 		], './public/js/libs.js')
-	    .styles([
-			'libs/sweetalert.css',
-			'libs/lity.css'
-	    ], './public/css/libs.css');
+		
+		.webpack('test.js');
+
 });

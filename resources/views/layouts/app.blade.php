@@ -39,7 +39,7 @@
 	
     @include('flash');    
     
-	@yield('scripts.footer')
+	@yield('footer.scripts')
 	
 </body>
 </html>

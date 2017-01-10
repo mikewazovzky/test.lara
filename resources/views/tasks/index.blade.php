@@ -26,10 +26,10 @@
 					<td>{{ $task->description }}</td>
 					<td>{{ $task->updated_at }}</td>
 					<td>
-						<button class="btn btn-warning btn-xs btn-edit open-modal" value="{{ $task->id }}">Edit</button>
+						<button class="btn btn-warning btn-xs open-modal" value="{{ $task->id }}">Edit</button>
 					</td>
 					<td>
-						<button class="btn btn-danger btn-xs btn-delete delete-task" value="{{ $task->id }}">Delete</button>
+						<button class="btn btn-danger btn-xs delete-task" value="{{ $task->id }}">Delete</button>
 					</td>		
 				</tr>			
 			@endforeach
@@ -82,6 +82,6 @@
 	
 @stop
 
-@section('scripts.footer')
+@section('footer.scripts')
 	<script src="/js/ajax.js"></script>
 @stop
