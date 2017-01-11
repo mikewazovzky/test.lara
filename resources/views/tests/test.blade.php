@@ -2,8 +2,9 @@
 
 @section('content')
 	
-	<h3>Testing ES20015</h3>
-
+	<h3>Testing ES6</h3>
+	<hr>
+	
 @stop
 
 @section('footer.scripts')
