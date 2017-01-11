@@ -19,10 +19,10 @@ elixir((mix) => {
 			'libs/lity.css'
 	    ], './public/css/libs.css')	
 	
-		.scripts([
-			'script.js', 
-			'ajax.js'
-		], 'public/js/ajax.js')
+		// .scripts([
+			// 'script.js', 
+			// 'ajax.js'
+		// ], 'public/js/ajax.js')
 		
 	    .scripts([
 			'libs/jquery-3.1.1.min.js',
@@ -31,6 +31,5 @@ elixir((mix) => {
 			'libs/lity.js'
 		], './public/js/libs.js')
 		
-		.webpack('test.js');
-
+		.webpack('tasks.js');
 });

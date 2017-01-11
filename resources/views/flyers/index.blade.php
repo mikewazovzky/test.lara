@@ -14,9 +14,11 @@
 				<label for="country">Country:</label>
 				<select name="country" id="country" class="form-control input-sm" style="width: 15em;" >
 					<option value="">Select Country</option>
+				
 					@foreach($countries::all() as $country => $code)
 						<option value="{{ $code }}">{{ $country }}</option>
 					@endforeach
+					
 				</select>
 			</div>
 			
@@ -24,9 +26,11 @@
 				<label for="name">User:</label>
 				<select name="name" id="name" class="form-control input-sm" style="width: 15em;">
 					<option value="">Select User</option>
+					
 					@foreach(App\User::all() as $user)
 						<option value="{{ $user->name }}">{{ $user->name }}</option>
 					@endforeach
+					
 				</select>
 			</div>				
 			

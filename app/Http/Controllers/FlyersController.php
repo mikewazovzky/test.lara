@@ -119,9 +119,4 @@ class FlyersController extends Controller
     {
         //
     }
-
-    public function filters(Request $request)
-    {
-        dd($request->fullUrl());
-    }
 }

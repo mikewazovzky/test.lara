@@ -83,5 +83,5 @@
 @stop
 
 @section('footer.scripts')
-	<script src="/js/ajax.js"></script>
+	<script src="/js/tasks.js"></script>
 @stop
