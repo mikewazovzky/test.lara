@@ -31,5 +31,6 @@ elixir((mix) => {
 			'libs/lity.js'
 		], './public/js/libs.js')
 		
-		.webpack('tasks.js');
+		.webpack('tasks.js')
+		.webpack('test.js');
 });

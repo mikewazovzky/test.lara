@@ -2,8 +2,7 @@
 
 @section('content')
 	
-	<p>{{ $code }}</p>
-	<p>{{ $country }}</p>
+	<h3>Testing ES20015</h3>
 
 @stop
 
