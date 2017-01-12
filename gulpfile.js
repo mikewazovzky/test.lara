@@ -32,5 +32,5 @@ elixir((mix) => {
 		], './public/js/libs.js')
 		
 		.webpack('tasks.js')
-		.webpack('test.js');
+		.webpack('ex.js');
 });

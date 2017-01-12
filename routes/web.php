@@ -22,6 +22,7 @@ Route::get('/home', function () {
 Auth::routes();
 
 Route::get('/test', 'TestController@test');
+Route::get('/es6', 'TestController@es6');
 
 Route::resource('tasks', 'TasksController');
 
