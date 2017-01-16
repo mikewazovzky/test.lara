@@ -9,7 +9,7 @@
 	<h1>Exercise 1</h1>
 
 <script src="/js/libs.js"></script>
-<script src="/js/es6exercise/generator.js"></script>
+<script src="/js/es6exercise/ex.js"></script>
 
 </body>
 </html>
