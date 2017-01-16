@@ -20,7 +20,7 @@ function output(text) {
 // **************************************
 // The old-n-busted callback way
 
-var response = {};
+
 
 function getFile(file) {
 	fakeAjax(file,function(text){
@@ -28,8 +28,11 @@ function getFile(file) {
     });
 }
 
+var response = {};
+
 function process(filename, content){
     response[filename] = content;
+    
     console.log(response); 
     console.log(Object.keys(response).length);
     
@@ -40,7 +43,8 @@ function process(filename, content){
             console.log(key + ': ' + response[key]);
         }
         
-        console.log(Object.values(response));        
+        console.log(Object.keys(response));  
+        console.log(Object.values(response));       
     }
 }
 
@@ -48,6 +52,3 @@ function process(filename, content){
 getFile("file1");
 getFile("file2");
 getFile("file3");
-
-
-
