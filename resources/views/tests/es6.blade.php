@@ -11,6 +11,10 @@
 <script src="/js/libs.js"></script>
 <script src="/js/es6exercise/ex.js"></script>
 
+<!--
+<script src="/js/ex.js"></script>
+-->
+
 </body>
 </html>
 
