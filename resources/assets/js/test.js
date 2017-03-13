@@ -33,8 +33,8 @@ let myPromise =  new Promise(function(resolve, reject) {
 		url: '/tasks/47',
 		type: 'get',
 		dataType: 'json',
-		success: resolve,
-		error: reject
+		success: resolve(data),
+		error: reject(error)
 	});
 });
 		
