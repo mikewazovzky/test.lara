@@ -1,9 +1,14 @@
 <p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
 
-
 ## Learn Laravel Basics
 
-Simple Laravel based project - flyers list, filter, create, update and delete
+Simple Laravel based project
+
+1. Flyers list, filter, create, update and delete
+
+2. Task list - Ajax example CRUD application, vanilla JS 
+
+## Laravel 5.3
 
 ## Libraries
 
